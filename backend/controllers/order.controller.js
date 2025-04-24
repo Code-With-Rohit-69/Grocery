@@ -6,7 +6,8 @@ import stripe from "stripe";
 
 export const placeOrderCOD = async (req, res) => {
   try {
-    const { userId, items, address } = req.body;
+    const { items, address } = req.body;
+    const userId = req.userId;
 
     if (!address || items.length === 0) {
       return res.json({ success: false, message: "Invalid data" });
@@ -95,7 +96,7 @@ export const placeOrderStripe = async (req, res) => {
 
     return res.json({ success: true, url: session.url });
   } catch (error) {
-    console.log("Error in placeOrderCOD controller ", error.message);
+    console.log("Error in placeOrderStripe controller ", error.message);
     res.json({ success: false, message: error.message });
   }
 };
@@ -113,7 +114,7 @@ export const stripeWebhooks = async (req, res) => {
       process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (error) {
-    console.log("Error in getUserOrders controller ", error.message);
+    console.log("Error in stripeWebhooks controller ", error.message);
     res.status(400).send(`Webhook Error: ${error.message}`);
   }
 

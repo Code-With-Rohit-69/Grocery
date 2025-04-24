@@ -6,7 +6,7 @@ const BestSeller = () => {
   const { products } = useAppContext();
 
   return (
-    <div className="mt-16">
+    <div className="mt-16 responsive">
       <p className="text-2xl md:text-3xl font-medium">Best Sellers</p>
 
       <div className="flex flex-wrap gap-4 md:gap-6 mt-6">

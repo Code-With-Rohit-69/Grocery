@@ -13,3 +13,8 @@
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
+
+.responsive {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

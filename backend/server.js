@@ -11,6 +11,7 @@ import cartRouter from "./routes/cart.route.js";
 import addressRouter from "./routes/address.route.js";
 import orderRouter from "./routes/order.route.js";
 import { stripeWebhooks } from "./controllers/order.controller.js";
+import contactRouter from "./routes/contact.route.js";
 
 dotenv.config();
 
@@ -39,6 +40,8 @@ app.use("/api/product", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/address", addressRouter);
 app.use("/api/order", orderRouter);
+
+app.use("/api/user", contactRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is Running on http://localhost:${PORT}`);

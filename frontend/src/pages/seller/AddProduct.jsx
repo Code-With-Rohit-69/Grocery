@@ -10,12 +10,15 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [offerPrice, setOfferPrice] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { axios } = useAppContext();
 
   const onSubmitHandler = async (e) => {
+    setLoading(true);
     try {
       e.preventDefault();
+
       const productData = {
         name,
         description: description.split("\n"),
@@ -47,9 +50,17 @@ const AddProduct = () => {
     } catch (error) {
       toast.error(error.message);
     }
+
+    setLoading(false);
   };
 
-  return (
+  return loading ? (
+    <>
+      <div className="flex items-center justify-center min-h-[80vh] w-full">
+        <div className="w-16 h-16 place-self-center border-4 border-gray-400 border-t-green-800 rounded-full animate-spin"></div>
+      </div>
+    </>
+  ) : (
     <div className="no-scrollbar flex-1 h-[95vh] overflow-y-scroll flex flex-col justify-between">
       <form
         className="md:p-10 p-4 space-y-5 max-w-lg"

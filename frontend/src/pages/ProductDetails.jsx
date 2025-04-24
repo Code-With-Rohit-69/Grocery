@@ -29,7 +29,7 @@ const ProductDetails = () => {
 
   return (
     product && (
-      <div className="mt-12">
+      <div className="mt-12 responsive">
         <p>
           <Link to={"/"}>Home</Link> /<Link to={"products"}> Products</Link> /
           <Link to={`/products/${product.category.toLowerCase()}`}>
