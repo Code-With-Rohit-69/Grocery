@@ -62,6 +62,51 @@ const Cart = () => {
     }
   }, [user]);
 
+  // const placeOrder = async () => {
+  //   try {
+  //     if (!selectedAddress) {
+  //       return toast.error("Please select an address");
+  //     }
+
+  //     if (paymentOption === "COD") {
+  //       const { data } = await axios.post("/api/order/cod", {
+  //         userId: user._id,
+  //         items: cartArray.map((item) => ({
+  //           product: item._id,
+  //           quantity: item.quantity,
+  //         })),
+  //         address: selectedAddress._id,
+  //       });
+
+  //       if (data.success) {
+  //         toast.success(data.message);
+  //         setCartItems({});
+
+  //         navigate("/my-orders");
+  //       } else {
+  //         toast.error(data.message);
+  //       }
+  //     } else {
+  //       const { data } = await axios.post("/api/order/stripe", {
+  //         userId: user._id,
+  //         items: cartArray.map((item) => ({
+  //           product: item._id,
+  //           quantity: item.quantity,
+  //         })),
+  //         address: selectedAddress._id,
+  //       });
+
+  //       if (data.success) {
+  //         window.location.replace(data.url);
+  //       } else {
+  //         toast.error(data.message);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   }
+  // };
+
   const placeOrder = async () => {
     try {
       if (!selectedAddress) {
@@ -87,20 +132,7 @@ const Cart = () => {
           toast.error(data.message);
         }
       } else {
-        const { data } = await axios.post("/api/order/stripe", {
-          userId: user._id,
-          items: cartArray.map((item) => ({
-            product: item._id,
-            quantity: item.quantity,
-          })),
-          address: selectedAddress._id,
-        });
-
-        if (data.success) {
-          window.location.replace(data.url);
-        } else {
-          toast.error(data.message);
-        }
+        return toast.error("Not available");
       }
     } catch (error) {
       toast.error(error.message);
@@ -291,7 +323,8 @@ const Cart = () => {
           onClick={placeOrder}
           className="w-full py-3 mt-6 cursor-pointer bg-primary text-white font-medium hover:bg-primary-dull transition"
         >
-          {paymentOption == "COD" ? "Place Order" : "Proceed to Checkout"}
+          {/* {paymentOption == "COD" ? "Place Order" : "Proceed to Checkout"} */}
+          Place Order
         </button>
       </div>
     </div>
