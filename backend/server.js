@@ -26,9 +26,9 @@ const allowedOrigins = ["https://grocery-silk.vercel.app", "http://localhost:517
 
 app.post("/stripe", express.raw({ type: "application/json" }), stripeWebhooks);
 
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 app.get("/", (req, res) => {
   res.send("API is working");
